@@ -158,7 +158,7 @@
 
 #############################################################################################
 # Exercicio 8
-# TODO: Exercicio 10
+# TODO: Exercicio 10 e acrescentar restricao de denominador 0
 print("Digite o operador '+', '-', '*' ou '/'");
 operando = input();
 
