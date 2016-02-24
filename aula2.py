@@ -158,29 +158,49 @@
 
 #############################################################################################
 # Exercicio 8
-# TODO: Exercicio 10 e acrescentar restricao de denominador 0
-print("Digite o operador '+', '-', '*' ou '/'");
-operando = input();
+i = 0;
+resultadoAnterior = 0;
+m = 0;
+while(i < 3):
+    print("Digite o operador '+', '-', '*' ou '/'"); 
+    operador = input();
 
-if(operando == "+" or operando == "-" or operando == "*" or operando == "/"): # Exercicio 9
-    print("Digite o primeiro operando");
-    operando1 = int(input());
+    if(operador == "+" or operador == "-" or operador == "*" or operador == "/"): # Exercicio 9
+        print("Digite o primeiro operando");
+        operando1 = input();
 
-    print("Digite o segundo operando");
-    operando2 = int(input());
+        print("Digite o segundo operando");
+        operando2 = input();
 
-    if(operando == "+"):
-        resultado = operando1 + operando2;
-    elif(operando == "-"):
-        resultado = operando1 - operando2;
-    elif(operando == "*"):
-        resultado = operando1 * operando2;
-    elif(operando == "/"):
-        resultado = operando1 / operando2;
+        if(operando1 == 'm'):
+            operando1 = m;
+        else:
+            operando1 = int(operando1);
+        if(operando2 == 'm'):
+            operando2 = m;
+        else:
+            operando2 = int(operando2);
 
-    print(resultado);
-else:
-    print("Operador invalido. Fim do programa.")
+        if(operador == "/"):
+            if(operando2 == 0):
+                print("Impossivel dividir por 0. Fim do programa.")
+                break;
+        if(operador == "+"):
+            resultado = operando1 + operando2;
+        elif(operador == "-"):
+            resultado = operando1 - operando2;
+        elif(operador == "*"):
+            resultado = operando1 * operando2;
+        elif(operador == "/"):
+            resultado = operando1 / operando2;
+
+        resultadoAnterior = resultado;
+        print(resultado);
+    elif(operador == "M"):
+        m = resultadoAnterior;
+    else:
+        print("Operador invalido.")
+    i = i + 1;
 
 #############################################################################################
 # Exercicio 12
