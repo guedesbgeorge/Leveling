@@ -17,54 +17,54 @@
 #
 ##
 # Exercicio 10
-##palavras = [("carro", "Veiculo automotor"),
-##            ("lampada", "Fornece luz, ilumina ambiente"),
-##            ("computador", "Usado para programar")];
-##
-##
-##tentativas = 4;
-##acertou = False;
-##print("Bem-vindo ao jogo da forca!")
-##print("Voce pode errar até 4 vezes")
-##
-##for palavra in palavras:
-##    acertos = [];
-##    for i in range(0, len(palavra[0])):
-##        acertos.append(False);
-##    print("Dica: " + palavra[1] + ". A palavra tem " + str(len(palavra[0])) + " letras");
-##    for i in range(0, len(palavra[0])):
-##        print(" _ ", end = "");
-##    print();
-##    while(tentativas > 0 and (not acertou)):
-##        print("Digite aqui uma letra:")
-##        userTry = input();
-##        if userTry in palavra[0]:
-##            for i in range(0, len(palavra[0])):
-##                if(userTry == palavra[0][i]):
-##                    print(" " + userTry+ " ", end = "")
-##                    acertos[i] = True
-##                else:
-##                    if(acertos[i] == True):
-##                        print(" " + palavra[0][i] + " ", end = "")
-##                    else:
-##                        print(" _ ", end = "")
-##            print();
-##        else:
-##            tentativas -= 1;
-##            print("Voce errou! Resta(m) " + str(tentativas) + " tentativas!")
-##        teste = True;
-##        for i in range (0, len(acertos)):
-##            teste = teste and acertos[i]
-##
-##        if(teste):
-##            acertou = True
-##
-##    if(acertou == False):
-##        print("Voce errou a palavra!")
-##    else:
-##        print("Parabens, voce acertou!")
-##    tentativas = 4;
-##    acertou = False;
+palavras = [("carro", "Veiculo automotor"),
+            ("lampada", "Fornece luz, ilumina ambiente"),
+            ("computador", "Usado para programar")];
+
+
+tentativas = 4;
+acertou = False;
+print("Bem-vindo ao jogo da forca!")
+print("Voce pode errar até 4 vezes")
+
+for palavra in palavras:
+    acertos = [];
+    for i in range(0, len(palavra[0])):
+        acertos.append(False);
+    print("Dica: " + palavra[1] + ". A palavra tem " + str(len(palavra[0])) + " letras");
+    for i in range(0, len(palavra[0])):
+        print(" _ ", end = "");
+    print();
+    while(tentativas > 0 and (not acertou)):
+        print("Digite aqui uma letra:")
+        userTry = input();
+        if userTry in palavra[0]:
+            for i in range(0, len(palavra[0])):
+                if(userTry == palavra[0][i]):
+                    print(" " + userTry+ " ", end = "")
+                    acertos[i] = True
+                else:
+                    if(acertos[i] == True):
+                        print(" " + palavra[0][i] + " ", end = "")
+                    else:
+                        print(" _ ", end = "")
+            print();
+        else:
+            tentativas -= 1;
+            print("Voce errou! Resta(m) " + str(tentativas) + " tentativas!")
+        teste = True;
+        for i in range (0, len(acertos)):
+            teste = teste and acertos[i]
+
+        if(teste):
+            acertou = True
+
+    if(acertou == False):
+        print("Voce errou a palavra!")
+    else:
+        print("Parabens, voce acertou!")
+    tentativas = 4;
+    acertou = False;
 
 ### Exercicio 1
 ##user = int(input("Digite aqui um numero:\n"));
@@ -108,7 +108,7 @@
 # Exercicio 5: TODO
 
 # Exercicio 6: TODO
-user = int(input("Digite aqui um numero: \n"));
+##user = int(input("Digite aqui um numero: \n"));
 
 
 
