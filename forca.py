@@ -1,13 +1,13 @@
+# -*- coding: utf-8 -*-
 from tkinter import *
 from tkinter import ttk
 import tkinter.messagebox
     
-
 def arriscar(*args):
     try:
-        global corrente
         word = palavra.get();
         palpite = userGuess.get();
+        global corrente
         if(palpite in word):
             tkinter.messagebox.showinfo("", "Acertou!")
             aux = True;
@@ -20,27 +20,22 @@ def arriscar(*args):
                     corrente = corrente + " " + word[i] + " "
                 else:
                     corrente = corrente + " _ "
-            label = ttk.Label(mainframe, text=corrente, font = "Times 40")
-            label.grid(column = 3, row=30, sticky=W)
+            global label
+            label.config(text=corrente, font = "Times 40");
+            label.update_idletasks()
             if(aux):
-                tkinter.messagebox.showinfo("", "Parabéns, você acertou a palava '" + word + "'!")
+                tkinter.messagebox.showinfo("", "Parabéns, você acertou a palavra!")
                 root.destroy()
         else:
             tkinter.messagebox.showinfo("", "A palavra não contém essa letra!")
-            global tentativas;
+            global tentativas
             tentativas = tentativas + 1
-            global w
-            global img;
+            global w, img
+            img = PhotoImage(file="img/f" + str(tentativas + 1) + ".gif")
+            w.create_image(0,0, anchor=NW, image=img)
+            w.update_idletasks()
             if(tentativas == 4):
-                img = PhotoImage(file="img/f" + str(6)+ ".gif")
-                w.create_image(0,0, anchor=NW, image=img)
-                w.update_idletasks();
-            else:
-                img = PhotoImage(file="img/f" + str(tentativas + 1)+ ".gif")
-                w.create_image(0,0, anchor=NW, image=img)
-                w.update_idletasks();
-            if(tentativas == 4):
-                tkinter.messagebox.showinfo("", "Você perdeu!")
+                tkinter.messagebox.showinfo("", "Você perdeu! A palavra era '" + word + "'!")
                 root.destroy()
             else:
                 tkinter.messagebox.showinfo("", "Resta(m) " + str(4 - tentativas) + " tentativas")
@@ -49,29 +44,31 @@ def arriscar(*args):
     
 def cadastrar(*args):
     ttk.Label(mainframe, text="Dica: " + dica.get(), font = "Times 16 bold").grid(row=29, sticky=W)
-    global corrente
-    global check
-    global label
+    global corrente, check
     for i in range(0, len(palavra.get())):
         corrente = corrente + " _ "
         check.append(False);
+    global label
     label = ttk.Label(mainframe, text=corrente, font = "Times 40")
     label.grid(column = 3, row=30, sticky=W)
     dica_entry.delete(0, 'end');
 
+# Iniciando
 root = Tk()
 root.title("Jogo da forca")
 
+# Declarando variaveis globais
 corrente = ""
 check = [];
+tentativas = 0;
 
+# Configurando o frame principal
 mainframe = ttk.Frame(root, padding="18 18 72 72")
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 mainframe.columnconfigure(0, weight=1)
 mainframe.rowconfigure(0, weight=1)
 
-tentativas = 0;
-
+# Campos de entrada
 palavra = StringVar()
 palavra_entry = ttk.Entry(mainframe, width=7, textvariable=palavra, show="*")
 palavra_entry.grid(column=10, row=1, sticky=(W, E))
@@ -84,27 +81,24 @@ userGuess = StringVar();
 userGuess_entry = ttk.Entry(mainframe, width=7, textvariable=userGuess)
 userGuess_entry.grid(column=10, row=7, sticky=(W, E))
 
+# Botoes
 ttk.Button(mainframe, text="Arriscar", command=arriscar).grid(column=12, row=7, sticky=W)
 ttk.Button(mainframe, text="Ok", command=cadastrar).grid(column=12, row=2, sticky=W)
 
+# Labels
 ttk.Label(mainframe, text="Jogador 1, digite aqui a palavra a ser advinhada:").grid(column=0, row=1, sticky=W)
 ttk.Label(mainframe, text="Jogador 1, digite aqui a dica:").grid(column=0, row=2, sticky=W)
 ttk.Label(mainframe, text="Jogador 2, digite aqui o seu palpite:").grid(column=0, row=7, sticky=W)
 
+# Canvas
 canvas_width = 275
 canvas_height = 372
-w = Canvas(mainframe, 
-           width=canvas_width,
-           height=canvas_height)
+w = Canvas(mainframe,width=canvas_width,height=canvas_height)
 w.grid(column =30, row = 25)
-w.pack()
 img = PhotoImage(file="img/f1.gif")
 w.create_image(0,0, anchor=NW, image=img)
 
-for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
+for child in mainframe.winfo_children():
+    child.grid_configure(padx=5, pady=5)
 
 mainloop();
-
-
-
-
